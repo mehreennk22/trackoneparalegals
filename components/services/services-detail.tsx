@@ -48,7 +48,7 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
         {/* Content side */}
         <div className="flex flex-col gap-7">
           <BlurReveal>
-            <h3 className="font-display text-3xl leading-[1.1] tracking-[-0.02em] text-ink-500 sm:text-4xl lg:text-[2.75rem] lg:leading-[1.08]">
+            <h3 className="font-sans text-3xl leading-[1.1] tracking-[-0.02em] text-ink-500 sm:text-4xl lg:text-[2.75rem] lg:leading-[1.08]">
               {service.title}
             </h3>
           </BlurReveal>

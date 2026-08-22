@@ -21,91 +21,90 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: 'paralegal',
-    title: 'Paralegal Support',
-    short:
-      'Trained IP paralegals working inside your systems and processes.',
-    icon: FileCheck2,
-    category: 'Paralegal Support',
-    description:
-      'Experienced intellectual property paralegals who integrate directly into your existing workflows, templates and case management systems — delivering consistent, verified work without the overhead of recruitment.',
-    benefits: [
-      'Work inside your existing systems and templates',
-      'Trained on IP procedures and jurisdictional requirements',
-      'No recruitment, onboarding or long-term commitments',
-      'Consistent execution with documented checklists',
-    ],
-    deliverables: [
-      'Filing preparation and prosecution support',
-      'Deadline calculation and docket reconciliation',
-      'Correspondence drafting and management',
-      'Status reporting at your preferred cadence',
-    ],
-  },
+  slug: 'paralegal',
+  title: 'Paralegal Services',
+  short:
+    'Flexible paralegal support tiers — from 10 to 40 hours a week, starting at $1,000/month.',
+  icon: FileCheck2,
+  category: 'Paralegal Support',
+  description:
+    'Trained IP paralegals available across three flexible packages, starting at $1,000/month — so you can match support to your firm\u2019s exact workload without the cost of recruiting in-house.',
+  benefits: [
+    'Flex Support — up to 10 hrs/week: filing, docketing and forms & correspondence support',
+    'Core Support — 25 hrs/week: USPTO and PCT filing support, docket management, client communications and weekly status updates',
+    'Dedicated Support — 40 hrs/week: full coverage from filing to case management with a dedicated paralegal assigned to your firm',
+    'No recruitment, onboarding or long-term commitments',
+  ],
+  deliverables: [
+    'USPTO and PCT filing preparation and follow-up',
+    'Docket management and tracking',
+    'Client correspondence and communications',
+    'Weekly or scheduled status reporting',
+  ],
+},
   {
-    slug: 'docketing',
-    title: 'Docketing Support',
-    short:
-      'Deadline calculation, docket management and reconciliation.',
-    icon: CalendarClock,
-    category: 'Deadlines & Records',
-    description:
-      'Precise deadline calculation and docket management that keeps your portfolio accurate. We reconcile dockets, calculate statutory and response deadlines, and maintain a clean, dependable record.',
-    benefits: [
-      'Accurate statutory and response deadline calculation',
-      'Reconciliation against official records',
-      'Reduced risk of missed deadlines',
-      'Clean, auditable docket history',
-    ],
-    deliverables: [
-      'Deadline calculation sheets',
-      'Docket reconciliation reports',
-      'Weekly docket health summaries',
-      'Exception and discrepancy logs',
-    ],
-  },
+  slug: 'docketing',
+  title: 'Docketing Services',
+  short: 'Reliable paralegal capacity without hiring full-time staff.',
+  icon: CalendarClock,
+  category: 'Deadlines & Records',
+  description:
+    'Precise, reliable docketing support across three flexible packages, starting at $1,500/month — matched to the size of your matter portfolio.',
+  benefits: [
+    'Docket Lite — management of up to 50 matters, with docketing, tracking, weekly reports and daily deadline reminders',
+    'Docket Pro — management of up to 150 matters, with docketing, tracking, weekly reports and daily deadline reminders',
+    'Docket Plus — unlimited matters, with docketing, tracking, weekly reports, daily deadline reminders and customized reports for different clients',
+    'Reliable paralegal capacity without hiring full-time staff',
+  ],
+  deliverables: [
+    'Docketing and tracking of all deadlines',
+    'Weekly docket reports',
+    'Daily reminders for hard deadlines',
+    'Customized client reporting (Docket Plus)',
+  ],
+},
   {
-    slug: 'renewals',
-    title: 'Maintenance & Renewal Fees',
-    short: 'Renewal tracking, reminders and payment administration.',
-    icon: RefreshCw,
-    category: 'Deadlines & Records',
-    description:
-      'End-to-end renewal tracking and fee administration. We monitor maintenance fee windows, send structured reminders, and administer payments so nothing lapses unnoticed.',
-    benefits: [
-      'Proactive renewal window monitoring',
-      'Structured reminder cadence',
-      'Payment administration support',
-      'Full visibility on upcoming obligations',
-    ],
-    deliverables: [
-      'Renewal forecast calendars',
-      'Reminder notifications and confirmations',
-      'Payment instruction summaries',
-      'Lapse risk reports',
-    ],
-  },
+  slug: 'renewals',
+  title: 'Maintenance',
+  short: 'Patent maintenance monitoring and payment administration, starting at $500/month.',
+  icon: RefreshCw,
+  category: 'Deadlines & Records',
+  description:
+    'Maintenance support starting at $500/month or $5,000/year, covering anywhere from 15 to 150+ patents in your portfolio.',
+  benefits: [
+    'Coverage from 15 to 150+ patents',
+    'Ongoing monitoring and payment administration',
+    'Quarterly reports on portfolio status',
+    'Flexible monthly or annual pricing',
+  ],
+  deliverables: [
+    'Maintenance fee monitoring',
+    'Payment administration',
+    'Quarterly status reports',
+    'Portfolio coverage tracking',
+  ],
+},
   {
-    slug: 'administrative',
-    title: 'Administrative Support',
-    short: 'Documents, correspondence and billing administration.',
-    icon: FolderKanban,
-    category: 'Administrative Support',
-    description:
-      'Day-to-day administrative coverage for your IP function — document handling, correspondence management and billing administration handled with the same discipline as your core team.',
-    benefits: [
-      'Reliable document and correspondence handling',
-      'Billing administration aligned to your processes',
-      'Frees senior team for higher-value work',
-      'Structured handoffs and tracking',
-    ],
-    deliverables: [
-      'Document preparation and filing packs',
-      'Correspondence logs and responses',
-      'Billing support and invoice reconciliation',
-      'Weekly administrative summaries',
-    ],
-  },
+  slug: 'administrative',
+  title: 'Administrative',
+  short: 'Cross-department administrative support, starting at $500/month.',
+  icon: FolderKanban,
+  category: 'Administrative Support',
+  description:
+    'Administrative support starting at $500/month or $5,000/year, covering all departments with regular reporting and rapid response for urgent filings.',
+  benefits: [
+    'Support across all departments',
+    'Regular reporting cadence',
+    'Support for last-minute and exigent filings',
+    'Flexible monthly or annual pricing',
+  ],
+  deliverables: [
+    'Cross-department administrative coverage',
+    'Regular status reports',
+    'Urgent and exigent filing support',
+    'Responsive turnaround on time-sensitive requests',
+  ],
+},
   {
     slug: 'records',
     title: 'Records & Data Management',
@@ -127,28 +126,27 @@ export const services: Service[] = [
       'Data quality dashboards',
     ],
   },
-  {
-    slug: 'overflow',
-    title: 'Overflow & Project Support',
-    short:
-      'Temporary capacity for projects, leave cover and workload peaks.',
-    icon: Layers,
-    category: 'Flexible Capacity',
-    description:
-      'Flexible capacity when workloads spike. Whether it is a project, leave cover or a seasonal peak, we provide trained support that ramps up quickly and scales back down when the surge passes.',
-    benefits: [
-      'Rapid ramp-up for workload peaks',
-      'Ideal for leave cover and projects',
-      'No permanent headcount commitment',
-      'Scoped to your exact requirement',
-    ],
-    deliverables: [
-      'Scoped project plans',
-      'Capacity allocation summaries',
-      'Progress reports against milestones',
-      'Handover documentation on completion',
-    ],
-  },
+ {
+  slug: 'overflow',
+  title: 'Overflow',
+  short: 'Short-term, task-based overflow support, starting at $500/month.',
+  icon: Layers,
+  category: 'Flexible Capacity',
+  description:
+    'Overflow support starting at $500/month or $5,000/year — short-term, task-based engagements across all departments for when workload spikes.',
+  benefits: [
+    'Short-term, task-based engagement',
+    'Support across all departments',
+    'Includes IDS backlogs, assignment recordation and file clean-ups',
+    'Flexible monthly or annual pricing',
+  ],
+  deliverables: [
+    'IDS backlog clearance',
+    'Assignment recordation',
+    'File clean-up and organization',
+    'Cross-department task support',
+  ],
+},
 ];
 
 export const serviceCategories = [

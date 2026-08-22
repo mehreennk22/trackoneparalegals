@@ -29,7 +29,7 @@ export function ServicesHero() {
             </span>
           </BlurReveal>
           <BlurReveal delay={0.1}>
-            <h1 className="mt-6 font-display text-[2.75rem] leading-[1.05] tracking-[-0.025em] text-ink-500 sm:text-6xl lg:text-[4.5rem] lg:leading-[1.02]">
+            <h1 className="mt-6 font-sans text-[2.75rem] leading-[1.05] tracking-[-0.025em] text-ink-500 sm:text-6xl lg:text-[4.5rem] lg:leading-[1.02]">
               Outsourced IP Support,
               <br className="hidden sm:block" />{' '}
               <span className="gradient-text italic">Scoped Around Your Workflows</span>
@@ -65,7 +65,7 @@ export function ServicesHero() {
               transition={{ duration: 0.7, ease: easeOut, delay: i * 0.1 }}
               className="group rounded-2xl border border-white/10 bg-[#111E3B] p-6 transition-shadow duration-300 hover:shadow-[0_20px_50px_-20px_rgba(47,107,255,0.25)]"
             >
-              <h3 className="font-display text-xl leading-tight text-ink-500">{cat.name}</h3>
+              <h3 className="font-sans text-xl leading-tight text-ink-500">{cat.name}</h3>
               <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">
                 {cat.description}
               </p>

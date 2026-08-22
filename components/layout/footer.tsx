@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Mail, ArrowUpRight, ShieldCheck } from 'lucide-react';
-import { FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
+import { FaLinkedinIn } from 'react-icons/fa6';
 
 const columns = [
   {
@@ -29,7 +29,6 @@ const columns = [
   {
     title: 'Resources',
     links: [
-      { label: 'Insights', href: '/#insights' },
       { label: 'Our Process', href: '/#process' },
       { label: 'Support Finder', href: '/#finder' },
       
@@ -76,16 +75,19 @@ export function Footer() {
               <span className="link-underline">hello@trackoneparalegals.com</span>
             </a>
             <div className="flex items-center gap-3 pt-1">
-              {[FaLinkedinIn, FaXTwitter].map((Icon, i) => (
+              {[FaLinkedinIn].map((Icon, i) => (
                 <a
                   key={i}
-                  href="#"
-                  aria-label="Social link"
+                  href="https://www.linkedin.com/company/trackone-paralegals/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/70 transition-all hover:border-white/30 hover:bg-white/5 hover:text-white"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
+
             </div>
           </div>
 

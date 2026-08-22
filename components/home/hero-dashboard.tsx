@@ -2,7 +2,7 @@ const stages = [
   { label: 'Task Received', color: '#94A3B8' },
   { label: 'Docketing', color: '#2F6BFF' },
   { label: 'Review', color: '#4F46E5' },
-  { label: 'Renewal', color: '#06B6D4' },
+  { label: 'Filing', color: '#06B6D4' },
   { label: 'Records Updated', color: '#0EA5E9' },
   { label: 'Completed', color: '#10B981' },
 ];
