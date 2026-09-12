@@ -11,8 +11,7 @@ const supportOptions = [
   'Docketing Support',
   'Maintenance & Renewal Fees',
   'Administrative Support',
-  'Records & Data Management',
-  'Overflow & Project Support',
+  'Drawings',
   'Customised Support Package',
   'Not Sure Yet',
 ];
@@ -125,11 +124,15 @@ export function ContactForm() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),
     });
-    if (!res.ok) throw new Error('Failed to send');
+    if (!res.ok) {
+  const data = await res.json().catch(() => ({}));
+  throw new Error(data.error || 'Failed to send');
+}
     setSubmitted(true);
-  } catch (err) {
-    setError('Something went wrong. Please email us directly at hello@trackoneparalegals.com.');
-  } finally {
+  } catch (err: any) {
+  setError(err?.message || 'Something went wrong. Please email us directly at hello@trackoneparalegals.com.');
+}
+  }finally{
     setLoading(false);
   }
 };
