@@ -70,8 +70,8 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
       >
         {/* Illustration side */}
         <FadeUp>
-          <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] border border-ink/8 bg-gradient-to-br from-canvas-alt to-white p-6 transition-shadow duration-500 hover:shadow-[0_30px_80px_-30px_rgba(47,107,255,0.22)] sm:p-10">
-            <div className="dot-grid absolute inset-0 opacity-40" aria-hidden />
+          <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#111E3B] to-[#0B1120] p-6 transition-shadow duration-500 hover:shadow-[0_30px_80px_-30px_rgba(47,107,255,0.3)] sm:p-10">
+          <div className="dot-grid-dark absolute inset-0 opacity-40" aria-hidden />
             <div
               aria-hidden
               className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full opacity-50 blur-3xl transition-opacity duration-500 group-hover:opacity-80"
@@ -83,7 +83,7 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
             <span className="absolute bottom-5 left-6 font-display text-5xl text-white/10 sm:text-6xl">
               0{index + 1}
             </span>
-            <div className="absolute right-6 top-6 flex items-center gap-2 rounded-full bg-white/70 px-3.5 py-1.5 text-xs font-medium text-ink-500 backdrop-blur">
+            <div className="absolute right-6 top-6 flex items-center gap-2 rounded-full bg-[#111E3B]/80 border border-white/10 px-3.5 py-1.5 text-xs font-medium text-white backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
               {service.category}
             </div>
