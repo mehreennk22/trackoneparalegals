@@ -111,16 +111,28 @@ export function ContactForm() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const set = (k: keyof typeof form) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
 
   const onSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    await new Promise((r) => setTimeout(r, 1100));
-    setLoading(false);
+  e.preventDefault();
+  setLoading(true);
+  setError('');
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    });
+    if (!res.ok) throw new Error('Failed to send');
     setSubmitted(true);
-  };
+  } catch (err) {
+    setError('Something went wrong. Please email us directly at hello@trackoneparalegals.com.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="relative">
@@ -211,7 +223,9 @@ export function ContactForm() {
                 options={supportOptions}
               />
               <FloatingField id="message" label="Message" as="textarea" required value={form.message} onChange={set('message')} />
-
+              {error && (
+                <p className="text-xs font-medium text-red-400">{error}</p>
+              )}
               <div className="mt-2 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-xs text-muted-foreground">
                   By submitting, you agree to be contacted about your enquiry.
