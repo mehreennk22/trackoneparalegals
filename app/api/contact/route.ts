@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // Simple in-memory rate limiter: max 5 submissions per IP per 10 minutes
 const submissions = new Map<string, number[]>();
 const WINDOW_MS = 10 * 60 * 1000;
@@ -22,7 +20,7 @@ const MAX_MESSAGE_LENGTH = 5000;
 
 export async function POST(request: Request) {
   try {
-    const ip =
+    const resend = new Resend(process.env.RESEND_API_KEY);
       request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
       request.headers.get('x-real-ip') ||
       'unknown';
