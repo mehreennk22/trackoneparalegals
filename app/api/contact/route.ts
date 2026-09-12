@@ -18,7 +18,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_FIELD_LENGTH = 200;
 const MAX_MESSAGE_LENGTH = 5000;
 
-export async function POST(request: Request){
+export async function POST(request: Request) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -28,15 +28,19 @@ export async function POST(request: Request){
       'unknown';
 
     if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'Too many submissions. Please try again later.' },
+        { status: 429 },
+      );
+    }
+
     const body = await request.json();
     const { name, company, email, phone, support, message } = body;
 
-    // Required fields
     if (!name || !email || !support || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Type checks
     if (
       typeof name !== 'string' ||
       typeof email !== 'string' ||
@@ -46,7 +50,6 @@ export async function POST(request: Request){
       return NextResponse.json({ error: 'Invalid field types' }, { status: 400 });
     }
 
-    // Length limits
     if (
       name.length > MAX_FIELD_LENGTH ||
       email.length > MAX_FIELD_LENGTH ||
@@ -58,12 +61,10 @@ export async function POST(request: Request){
       return NextResponse.json({ error: 'One or more fields is too long' }, { status: 400 });
     }
 
-    // Email format
     if (!EMAIL_REGEX.test(email)) {
       return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
     }
 
-    // Basic sanitization: strip HTML tags from user input before embedding in email
     const strip = (s: string) => s.replace(/<[^>]*>/g, '');
     const safe = {
       name: strip(name),
