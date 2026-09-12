@@ -99,19 +99,13 @@ export function WhyTrackOneEditorial() {
                   }`}
                 >
                   {/* Oversized number */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: '-12%' }}
-                    transition={{ duration: 0.9, ease: easeOut }}
-                    className="relative"
-                  >
+                  <div className="relative">
                     <span
-  className="font-display text-[6rem] font-medium leading-none tracking-tight sm:text-[8rem]"
-  style={{ color: r.accent.replace('0.12', '1') }}
->
-  <span style={{ color: 'rgba(255,255,255,0.15)' }}>{r.num}</span>
-</span>
+                      className="font-display text-[6rem] font-medium leading-none tracking-tight sm:text-[8rem]"
+                      style={{ color: r.accent.replace('0.12', '0.35') }}
+                    >
+                      {r.num}
+                    </span>
                     {/* accent underline */}
                     <motion.div
                       initial={{ scaleX: 0 }}
@@ -121,7 +115,7 @@ export function WhyTrackOneEditorial() {
                       className="mt-2 h-1 w-16 origin-left rounded-full"
                       style={{ background: r.accent.replace('0.12', '0.5') }}
                     />
-                  </motion.div>
+                  </div>
 
                   {/* Text */}
                   <motion.div
