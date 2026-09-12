@@ -129,14 +129,12 @@ export function ContactForm() {
   throw new Error(data.error || 'Failed to send');
 }
     setSubmitted(true);
-  } catch (err: any) {
-  setError(err?.message || 'Something went wrong. Please email us directly at hello@trackoneparalegals.com.');
-}
-  }finally{
+    } catch (err: any) {
+    setError(err?.message || 'Something went wrong. Please email us directly at hello@trackoneparalegals.com.');
+  } finally {
     setLoading(false);
   }
 };
-
   return (
     <div className="relative">
       <div className="relative overflow-hidden rounded-[2rem] glass p-6 shadow-[0_30px_80px_-30px_rgba(47,107,255,0.25)] sm:p-10">
