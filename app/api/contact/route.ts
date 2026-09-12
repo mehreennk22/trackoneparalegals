@@ -18,20 +18,16 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_FIELD_LENGTH = 200;
 const MAX_MESSAGE_LENGTH = 5000;
 
-export async function POST(request: Request) {
+export async function POST(request: Request){
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
+
+    const ip =
       request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
       request.headers.get('x-real-ip') ||
       'unknown';
 
     if (isRateLimited(ip)) {
-      return NextResponse.json(
-        { error: 'Too many submissions. Please try again later.' },
-        { status: 429 },
-      );
-    }
-
     const body = await request.json();
     const { name, company, email, phone, support, message } = body;
 
