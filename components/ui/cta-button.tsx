@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { MagneticButton } from './magnetic-button';
+import { useContactModal } from '@/components/contact/contact-modal-context';
 import { cn } from '@/lib/utils';
 
 type Variant = 'primary' | 'dark' | 'ghost' | 'light';
@@ -30,9 +30,13 @@ export function CTAButton({
   className?: string;
   showArrow?: boolean;
 }) {
+  const { openModal } = useContactModal();
+  const isContactTrigger = href === '/contact';
+
   return (
     <MagneticButton
-      href={href}
+      href={isContactTrigger ? undefined : href}
+      onClick={isContactTrigger ? openModal : undefined}
       className={cn(
         'group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-tight transition-all duration-300',
         styles[variant],

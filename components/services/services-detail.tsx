@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Check, ArrowUpRight } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Check, ChevronDown } from 'lucide-react';
 import { services, type Service } from '@/lib/services';
 import { CTAButton } from '@/components/ui/cta-button';
 import { FadeUp, BlurReveal } from '@/components/ui/motion';
@@ -9,6 +10,51 @@ import { serviceIllustrations } from './service-illustrations';
 import { cn } from '@/lib/utils';
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
+
+function PackageAccordionItem({ pkg }: { pkg: { title: string; details: string[] } }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#111E3B] transition-colors duration-200 hover:border-brand-300">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left"
+        aria-expanded={open}
+      >
+        <span className="text-sm font-medium leading-relaxed text-ink-500">{pkg.title}</span>
+        <ChevronDown
+          className={cn(
+            'h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-300',
+            open && 'rotate-180 text-brand-400',
+          )}
+        />
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: easeOut }}
+          >
+            <ul className="flex flex-col gap-2 px-4 pb-4 pt-0.5">
+              {pkg.details.map((d) => (
+                <li
+                  key={d}
+                  className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"
+                >
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-brand-400" />
+                  {d}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 function ServiceBlock({ service, index }: { service: Service; index: number }) {
   const reversed = index % 2 === 1;
@@ -34,7 +80,6 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
             <div className="relative flex h-full w-full items-center justify-center">
               <Art />
             </div>
-            {/* index marker */}
             <span className="absolute bottom-5 left-6 font-display text-5xl text-white/10 sm:text-6xl">
               0{index + 1}
             </span>
@@ -62,7 +107,7 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
           <FadeUp delay={0.14}>
             <div>
               <h4 className="mb-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-600">
-                Benefits
+                Services
               </h4>
               <ul className="grid gap-3 sm:grid-cols-2">
                 {service.benefits.map((b) => (
@@ -80,19 +125,13 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
           <FadeUp delay={0.2}>
             <div>
               <h4 className="mb-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-600">
-                Typical Deliverables
+                Packages Offered
               </h4>
-              <ul className="flex flex-col gap-2.5">
-                {service.deliverables.map((d) => (
-                  <li
-                    key={d}
-                    className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111E3B] px-4 py-3 text-sm leading-relaxed text-ink-500 transition-colors duration-200 hover:border-brand-300 hover:bg-brand-500/10"
-                  >
-                    <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
-                    {d}
-                  </li>
+              <div className="flex flex-col gap-2.5">
+                {service.deliverables.map((pkg) => (
+                  <PackageAccordionItem key={pkg.title} pkg={pkg} />
                 ))}
-              </ul>
+              </div>
             </div>
           </FadeUp>
 

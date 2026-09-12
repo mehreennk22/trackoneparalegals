@@ -49,7 +49,7 @@ function FloatingField({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder=" "
-          className="glass-input peer h-14 w-full rounded-xl px-4 pt-4 text-sm text-ink-500 outline-none"
+          className="glass-input peer h-14 w-full rounded-xl px-4 pt-5 text-sm text-ink-500 outline-none"
         />
       )}
       {as === 'textarea' && (
@@ -60,7 +60,7 @@ function FloatingField({
           onChange={(e) => onChange(e.target.value)}
           placeholder=" "
           rows={4}
-          className="glass-input peer w-full rounded-xl px-4 pt-5 text-sm text-ink-500 outline-none"
+          className="glass-input peer w-full rounded-xl px-4 pt-6 text-sm text-ink-500 outline-none"
         />
       )}
       {as === 'select' && (
@@ -69,7 +69,7 @@ function FloatingField({
           required={required}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="glass-input peer h-14 w-full appearance-none rounded-xl px-4 pt-4 text-sm text-ink-500 outline-none"
+          className="glass-input peer h-14 w-full appearance-none rounded-xl px-4 pt-5 text-sm text-ink-500 outline-none"
         >
           <option value="" disabled></option>
           {options?.map((o) => (
@@ -83,10 +83,11 @@ function FloatingField({
         htmlFor={id}
         className={cn(
           'pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 origin-left text-sm text-muted-foreground transition-all duration-200',
-          (hasValue || as === 'select') && 'top-3.5 -translate-y-0 text-xs text-brand-600',
-          'peer-focus:top-3.5 peer-focus:-translate-y-0 peer-focus:text-xs peer-focus:text-brand-600',
-          as === 'textarea' && 'top-5',
-          (hasValue || as === 'select') && as === 'textarea' && 'top-3.5',
+          (hasValue || as === 'select') && 'top-3.5 -translate-y-0 text-xs',
+          hasValue && 'text-brand-400',
+          'peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-xs peer-focus:text-brand-400',
+          as === 'textarea' && 'top-6',
+          (hasValue || as === 'select') && as === 'textarea' && 'top-2.5',
         )}
       >
         {label}

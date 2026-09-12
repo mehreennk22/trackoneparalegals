@@ -12,7 +12,7 @@ const columns = [
       { label: 'Home', href: '/' },
       { label: 'Services', href: '/services' },
       { label: 'Blogs', href: '/blogs' },
-      { label: 'Contact', href: '/contact' },
+      { label: 'Pricing', href: '/pricing' },
     ],
   },
   {
@@ -22,8 +22,7 @@ const columns = [
       { label: 'Docketing Support', href: '/services#docketing' },
       { label: 'Maintenance & Renewals', href: '/services#renewals' },
       { label: 'Administrative Support', href: '/services#administrative' },
-      { label: 'Records & Data Management', href: '/services#records' },
-      { label: 'Overflow & Project Support', href: '/services#overflow' },
+      { label: 'Drawings', href: '/services#drawings' },
     ],
   },
   {

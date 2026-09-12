@@ -269,6 +269,6 @@ export const serviceIllustrations = [
   DocketingIso,
   RenewalsIso,
   AdministrativeIso,
-  RecordsIso,
   OverflowIso,
 ];
+

@@ -3,10 +3,14 @@ import {
   CalendarClock,
   RefreshCw,
   FolderKanban,
-  Database,
   Layers,
   type LucideIcon,
 } from 'lucide-react';
+
+export type ServicePackage = {
+  title: string;
+  details: string[];
+};
 
 export type Service = {
   slug: string;
@@ -16,137 +20,218 @@ export type Service = {
   category: 'Operational Support' | 'Paralegal Support' | 'Administrative Support' | 'Deadlines & Records' | 'Flexible Capacity';
   description: string;
   benefits: string[];
-  deliverables: string[];
+  deliverables: ServicePackage[];
 };
 
 export const services: Service[] = [
   {
-  slug: 'paralegal',
-  title: 'Paralegal Services',
-  short:
-    'Flexible paralegal support tiers — from 10 to 40 hours a week, starting at $1,000/month.',
-  icon: FileCheck2,
-  category: 'Paralegal Support',
-  description:
-    'Trained IP paralegals available across three flexible packages, starting at $1,000/month — so you can match support to your firm\u2019s exact workload without the cost of recruiting in-house.',
-  benefits: [
-    'Flex Support — up to 10 hrs/week: filing, docketing and forms & correspondence support',
-    'Core Support — 25 hrs/week: USPTO and PCT filing support, docket management, client communications and weekly status updates',
-    'Dedicated Support — 40 hrs/week: full coverage from filing to case management with a dedicated paralegal assigned to your firm',
-    'No recruitment, onboarding or long-term commitments',
-  ],
-  deliverables: [
-    'USPTO and PCT filing preparation and follow-up',
-    'Docket management and tracking',
-    'Client correspondence and communications',
-    'Weekly or scheduled status reporting',
-  ],
-},
+    slug: 'paralegal',
+    title: 'Paralegal Services',
+    short: 'Flexible paralegal support tiers, starting at $1,000/month.',
+    icon: FileCheck2,
+    category: 'Paralegal Support',
+    description:
+      'Trained IP paralegals offering 10–40 hours of support a week, starting at $1,000/month — filing, docketing, reporting and client communications handled inside your existing systems.',
+    benefits: [
+      '10–40 hours of support',
+      'Filing support for US and PCT applications',
+      'Docket management and reporting',
+      'Client communications',
+    ],
+    deliverables: [
+      {
+        title: 'Flex Support',
+        details: [
+          'Support for up to 10 hours/week',
+          'Filing support for US and PCT filings',
+          'Docketing and deadline management',
+          'Scheduled reporting and docket meetings',
+        ],
+      },
+      {
+        title: 'Core Support',
+        details: [
+          '25 hours/week',
+          'USPTO and PCT filing support and follow-up',
+          'Docket management',
+          'Client communications',
+          'Weekly status updates',
+        ],
+      },
+      {
+        title: 'Dedicated Support',
+        details: [
+          '40 hours/week',
+          'Full coverage from filing to case management',
+          'Dedicated paralegal assigned to your firm',
+          'Docket management',
+          'Scheduled reporting',
+        ],
+      },
+      {
+        title: 'Build Your Own Package',
+        details: [
+          'Send us your needs in an email or schedule a call',
+          'Get a quote with services tailored to your needs',
+        ],
+      },
+    ],
+  },
   {
-  slug: 'docketing',
-  title: 'Docketing Services',
-  short: 'Reliable paralegal capacity without hiring full-time staff.',
-  icon: CalendarClock,
-  category: 'Deadlines & Records',
-  description:
-    'Precise, reliable docketing support across three flexible packages, starting at $1,500/month — matched to the size of your matter portfolio.',
-  benefits: [
-    'Docket Lite — management of up to 50 matters, with docketing, tracking, weekly reports and daily deadline reminders',
-    'Docket Pro — management of up to 150 matters, with docketing, tracking, weekly reports and daily deadline reminders',
-    'Docket Plus — unlimited matters, with docketing, tracking, weekly reports, daily deadline reminders and customized reports for different clients',
-    'Reliable paralegal capacity without hiring full-time staff',
-  ],
-  deliverables: [
-    'Docketing and tracking of all deadlines',
-    'Weekly docket reports',
-    'Daily reminders for hard deadlines',
-    'Customized client reporting (Docket Plus)',
-  ],
-},
+    slug: 'docketing',
+    title: 'Docketing Services',
+    short: 'Deadline tracking and case management, starting at $1,500/month.',
+    icon: CalendarClock,
+    category: 'Deadlines & Records',
+    description:
+      'Docketing support starting at $1,500/month, covering a minimum of 50 cases — deadline tracking, regular reporting and daily reminders to keep your portfolio accurate.',
+    benefits: [
+      'Case management and file updates starting at a minimum of 50 cases',
+      'Docketing and tracking of all deadlines',
+      'Regular scheduled docket reports',
+      'Daily task reminders',
+    ],
+    deliverables: [
+      {
+        title: 'Docket Lite',
+        details: [
+          'Management of up to 50 matters',
+          'Docketing and tracking of all deadlines',
+          'Weekly docket reports',
+          'Daily reminders for hard deadlines',
+        ],
+      },
+      {
+        title: 'Docket Pro',
+        details: [
+          'Management of up to 150 matters',
+          'Docketing and tracking of all deadlines',
+          'Weekly docket reports',
+          'Daily reminders for hard deadlines',
+        ],
+      },
+      {
+        title: 'Docket Plus',
+        details: [
+          'Unlimited matters',
+          'Docketing and tracking of all deadlines',
+          'Weekly docket reports',
+          'Daily reminders for hard deadlines',
+          'Customized reports for different clients',
+        ],
+      },
+      {
+        title: 'Build Your Own Package',
+        details: [
+          'Send us your needs in an email or schedule a call',
+          'Get a quote with services tailored to your needs',
+        ],
+      },
+    ],
+  },
   {
-  slug: 'renewals',
-  title: 'Maintenance',
-  short: 'Patent maintenance monitoring and payment administration, starting at $500/month.',
-  icon: RefreshCw,
-  category: 'Deadlines & Records',
-  description:
-    'Maintenance support starting at $500/month or $5,000/year, covering anywhere from 15 to 150+ patents in your portfolio.',
-  benefits: [
-    'Coverage from 15 to 150+ patents',
-    'Ongoing monitoring and payment administration',
-    'Quarterly reports on portfolio status',
-    'Flexible monthly or annual pricing',
-  ],
-  deliverables: [
-    'Maintenance fee monitoring',
-    'Payment administration',
-    'Quarterly status reports',
-    'Portfolio coverage tracking',
-  ],
-},
+    slug: 'renewals',
+    title: 'Maintenance',
+    short: 'Patent maintenance fee monitoring and payment, starting at $500/month.',
+    icon: RefreshCw,
+    category: 'Deadlines & Records',
+    description:
+      'Maintenance support starting at $500/month, covering monitoring and payment of maintenance fees for US and foreign patents — with regular reporting on completed and pending deadlines.',
+    benefits: [
+      'Monitoring and payment of maintenance fees',
+      'US and foreign patent maintenance fee assistance',
+      'Regular reports of completed and pending deadlines',
+    ],
+    deliverables: [
+      {
+        title: 'Portfolio Essential',
+        details: [
+          'Management of up to 15 patents',
+          'Deadline monitoring',
+          'Maintenance fee payment',
+          'Regular reporting',
+        ],
+      },
+      {
+        title: 'Portfolio Professional',
+        details: [
+          'Management of 16–50 patents',
+          'Deadline monitoring + reminders',
+          'Fee payment execution',
+          'Status confirmations',
+          'Quarterly reports',
+          'Deadline risk alerts',
+        ],
+      },
+      {
+        title: 'Portfolio Enterprise',
+        details: [
+          '51–150 patents',
+          'Priority monitoring & payments',
+          'Custom reporting',
+          'Audit trail & documentation',
+          'Liaison with foreign agents (if needed)',
+          'Annual portfolio review call',
+        ],
+      },
+    ],
+  },
   {
   slug: 'administrative',
-  title: 'Administrative',
-  short: 'Cross-department administrative support, starting at $500/month.',
+  title: 'Administrative Services',
+  short: 'Assignment recordation, IDS services and rush filing support.',
   icon: FolderKanban,
   category: 'Administrative Support',
   description:
-    'Administrative support starting at $500/month or $5,000/year, covering all departments with regular reporting and rapid response for urgent filings.',
+    'Administrative support covering assignment collection and recordation, IDS services, general administrative support and rush filings — billed hourly or tailored to your exact needs.',
   benefits: [
-    'Support across all departments',
-    'Regular reporting cadence',
-    'Support for last-minute and exigent filings',
-    'Flexible monthly or annual pricing',
+    'Assignment collection and recordation',
+    'IDS Services',
+    'Administrative Support',
+    'Rush filings',
   ],
   deliverables: [
-    'Cross-department administrative coverage',
-    'Regular status reports',
-    'Urgent and exigent filing support',
-    'Responsive turnaround on time-sensitive requests',
+    {
+      title: 'Hourly Package',
+      details: [
+        'Customized services on an hourly basis',
+      ],
+    },
+    {
+      title: 'Build Your Own Package',
+      details: [
+        'Send us your needs in an email or schedule a call',
+        'Get a quote with services tailored to your needs',
+      ],
+    },
   ],
 },
   {
-    slug: 'records',
-    title: 'Records & Data Management',
-    short: 'Portfolio clean-up, migration and verification.',
-    icon: Database,
-    category: 'Administrative Support',
+    slug: 'drawings',
+    title: 'Drawings',
+    short: 'Temporary capacity for projects, leave cover and workload peaks.',
+    icon: Layers,
+    category: 'Flexible Capacity',
     description:
-      'Keep your portfolio data clean and trustworthy. We handle portfolio clean-up, data migration between systems, and verification against official records to eliminate drift and gaps.',
+      'Flexible capacity when workloads spike. Whether it is a project, leave cover or a seasonal peak, we provide trained support that ramps up quickly and scales back down when the surge passes.',
     benefits: [
-      'Eliminate data drift and duplicate records',
-      'Smooth migration between systems',
-      'Verified, auditable portfolio data',
-      'Improved reporting accuracy',
+      'Rapid ramp-up for workload peaks',
+      'Ideal for leave cover and projects',
+      'No permanent headcount commitment',
+      'Scoped to your exact requirement',
     ],
     deliverables: [
-      'Portfolio audit and clean-up reports',
-      'Data migration worksheets',
-      'Verification against official records',
-      'Data quality dashboards',
+      {
+        title: "What's Included",
+        details: [
+          'Scoped project plans',
+          'Capacity allocation summaries',
+          'Progress reports against milestones',
+          'Handover documentation on completion',
+        ],
+      },
     ],
   },
- {
-  slug: 'overflow',
-  title: 'Overflow',
-  short: 'Short-term, task-based overflow support, starting at $500/month.',
-  icon: Layers,
-  category: 'Flexible Capacity',
-  description:
-    'Overflow support starting at $500/month or $5,000/year — short-term, task-based engagements across all departments for when workload spikes.',
-  benefits: [
-    'Short-term, task-based engagement',
-    'Support across all departments',
-    'Includes IDS backlogs, assignment recordation and file clean-ups',
-    'Flexible monthly or annual pricing',
-  ],
-  deliverables: [
-    'IDS backlog clearance',
-    'Assignment recordation',
-    'File clean-up and organization',
-    'Cross-department task support',
-  ],
-},
 ];
 
 export const serviceCategories = [
@@ -163,9 +248,9 @@ export const serviceCategories = [
     items: ['Docketing Support', 'Maintenance & Renewal Fees'],
   },
   {
-    name: 'Flexible Capacity',
-    description:
-      'Support that flexes with your workload, from dedicated capacity to short-term project surges.',
-    items: ['Records & Data Management', 'Overflow & Project Support', 'Customised Support Packages'],
-  },
+  name: 'Flexible Capacity',
+  description:
+    'Support that flexes with your workload, from dedicated capacity to short-term project surges.',
+  items: ['Drawings', 'Customised Support Packages'],
+},
 ];

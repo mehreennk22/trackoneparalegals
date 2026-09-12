@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+      color-scheme: dark;
   --background: 223 49% 8%;
   --foreground: 0 0% 100%;
   --card: 221 46% 12%;
@@ -81,17 +82,33 @@
   }
 
   .glass-input {
-    background: rgba(68, 147, 225, 0.5);
-    backdrop-filter: blur(12px) saturate(160%);
-    -webkit-backdrop-filter: blur(12px) saturate(160%);
-    border: 1px solid rgba(229, 231, 235, 0.8);
-    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-  }
-  .glass-input:focus-within {
-    border-color: rgba(68, 147, 225, 0.5);
-    box-shadow: 0 0 0 4px rgba(47, 107, 255, 0.12);
-    background: rgba(255, 255, 255, 0.75);
-  }
+  -webkit-appearance: none;
+  appearance: none;
+  color-scheme: dark;
+  background-color: rgba(17, 26, 46, 0.5);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(147, 164, 195, 0.25);
+  color: #ffffff;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.glass-input:focus-within {
+  border-color: rgba(94, 200, 255, 0.6);
+  box-shadow: 0 0 0 4px rgba(94, 200, 255, 0.15);
+  background-color: rgba(17, 26, 46, 0.75);
+}
+
+input.glass-input:-webkit-autofill,
+input.glass-input:-webkit-autofill:hover,
+input.glass-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(17, 26, 46, 0.9) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+.glass-input option {
+  background-color: #111E3B;
+  color: #ffffff;
+}
 
   .noise-overlay {
     position: relative;

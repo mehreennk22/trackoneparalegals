@@ -6,6 +6,8 @@ import { CursorGlow } from '@/components/ui/cursor-glow';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
+import { ContactModalProvider } from '@/components/contact/contact-modal-context';
+import { ContactModal } from '@/components/contact/contact-modal';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -13,7 +15,6 @@ const manrope = Manrope({
   variable: '--font-manrope',
   display: 'swap',
 });
-
 const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   weight: ['400'],
@@ -21,9 +22,7 @@ const instrumentSerif = Instrument_Serif({
   variable: '--font-instrument',
   display: 'swap',
 });
-
 const siteUrl = 'https://trackoneparalegals.com';
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -81,7 +80,6 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
 };
-
 const professionalServiceSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -106,7 +104,6 @@ const professionalServiceSchema = {
     'Portfolio Management',
   ],
 };
-
 export default function RootLayout({
   children,
 }: {
@@ -123,14 +120,16 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <SmoothScrollProvider>
-          <ScrollProgress />
-          <CursorGlow />
-          <Navbar />
-          <main className="relative">{children}</main>
-          <Footer />
-        </SmoothScrollProvider>
+        <ContactModalProvider>
+          <SmoothScrollProvider>
+            <ScrollProgress />
+            <CursorGlow />
+            <Navbar />
+            <main className="relative">{children}</main>
+            <Footer />
+          </SmoothScrollProvider>
+          <ContactModal />
+        </ContactModalProvider>
       </body>
     </html>
-  );
-}
+  ); }
