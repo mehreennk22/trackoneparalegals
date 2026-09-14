@@ -163,6 +163,14 @@ const pricingGroups: PricingGroup[] = [
           'Or $275 per patent',
         ],
       },
+      {
+        name: 'Build Your Own',
+        price: 'Custom',
+        features: [
+          'Send us your needs in an email or schedule a call',
+          'Get a quote with services tailored to your needs',
+        ],
+      },
     ],
   },
   {
@@ -284,7 +292,7 @@ export default function PricingPage() {
             Ad Hoc & Drawings
           </h2>
           <p className="text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Drawing fees depend on the complexity of drawings and time constraints. Contact us at{' '}
+            Drawing fees depend on the complexity of drawings and time constraints. Rates per sheet typically range from $10 - $35 per sheet. Contact us at{' '}
             <a href="mailto:hello@trackoneparalegals.com" className="text-brand-400 link-underline">
               hello@trackoneparalegals.com
             </a>{' '}

@@ -104,7 +104,7 @@ export function ProcessWorkflow() {
                       {s.num}
                     </span>
                   </div>
-                  <h3 className="font-display text-2xl font-medium tracking-tight text-ink-500">
+                  <h3 className="font-sans text-2xl font-medium tracking-tight text-ink-500">
                     {s.title}
                   </h3>
                   <p className="mt-2.5 max-w-xs text-pretty text-sm leading-relaxed text-muted-foreground">
@@ -133,7 +133,7 @@ export function ProcessWorkflow() {
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-display text-xl font-medium tracking-tight text-ink-500">
+                  <h3 className="font-sans text-xl font-medium tracking-tight text-ink-500">
                     {s.title}
                   </h3>
                   <p className="mt-1.5 max-w-xs text-pretty text-sm leading-relaxed text-muted-foreground">

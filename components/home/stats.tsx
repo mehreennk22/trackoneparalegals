@@ -33,7 +33,7 @@ export function Stats() {
                   style={{ background: 'radial-gradient(circle, rgba(47,107,255,0.25), transparent 70%)' }}
                 />
                 <div className="relative">
-                  <div className="font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-6xl">
+                  <div className="font-sans text-5xl font-medium tracking-tight text-slate-900 sm:text-6xl">
                     <AnimatedCounter to={k.value} suffix={k.suffix} />
                   </div>
                   <div className="mt-3 text-sm font-medium text-muted-foreground">{k.label}</div>

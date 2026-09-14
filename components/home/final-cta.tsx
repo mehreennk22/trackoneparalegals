@@ -56,7 +56,7 @@ export function FinalCTA() {
 
       <div className="container-px relative z-10 flex flex-col items-center text-center">
         <BlurReveal>
-          <h2 className="font-display text-4xl leading-[1.06] tracking-[-0.025em] sm:text-6xl lg:text-[4.75rem] lg:leading-[1.03]">
+          <h2 className="font-sans text-4xl leading-[1.06] tracking-[-0.025em] sm:text-6xl lg:text-[4.75rem] lg:leading-[1.03]">
             Hand Over the Admin.
             <br />
             <span className="gradient-text italic">Keep the Control.</span>

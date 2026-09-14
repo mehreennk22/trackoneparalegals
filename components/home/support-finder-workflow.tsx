@@ -120,7 +120,7 @@ export function SupportFinderWorkflow() {
                     {/* node */}
                     <div
                       className={cn(
-                        'relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-2 font-display text-lg font-semibold transition-all duration-400',
+                        'relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-2 font-sans text-lg font-semibold transition-all duration-400',
                         isActive
                           ? 'border-brand-500 bg-brand-500 text-white shadow-[0_10px_30px_-10px_rgba(47,107,255,0.5)]'
                           : isPast
@@ -141,7 +141,7 @@ export function SupportFinderWorkflow() {
                     <div className="flex flex-1 items-center justify-between">
                       <span
                         className={cn(
-                          'font-display text-xl font-medium transition-colors duration-300 sm:text-2xl',
+                          'font-sans text-xl font-medium transition-colors duration-300 sm:text-2xl',
                           isActive ? 'text-ink-500' : 'text-ink-400 group-hover:text-ink-500',
                         )}
                       >
@@ -181,7 +181,7 @@ export function SupportFinderWorkflow() {
                     <Sparkles className="h-3.5 w-3.5" />
                     Recommended
                   </span>
-                  <h3 className="font-display text-3xl font-medium tracking-tight text-ink-500 sm:text-4xl">
+                  <h3 className="font-sans text-3xl font-medium tracking-tight text-ink-500 sm:text-4xl">
                     {current.recommendation}
                   </h3>
                   <p className="max-w-md text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">

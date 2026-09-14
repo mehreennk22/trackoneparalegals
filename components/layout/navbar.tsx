@@ -118,7 +118,7 @@ export function Navbar() {
                 >
                   <Link
                     href={l.href}
-                    className="block border-b border-border py-5 font-display text-3xl font-medium text-ink-500"
+                    className="block border-b border-border py-5 font-sans text-3xl font-medium text-ink-500"
                   >
                     {l.label}
                   </Link>

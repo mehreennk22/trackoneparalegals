@@ -49,7 +49,7 @@
     letter-spacing: -0.011em;
   }
   h1, h2, h3, h4 {
-    @apply font-display;
+    @apply font-sans;
     letter-spacing: -0.02em;
     line-height: 1.05;
   }

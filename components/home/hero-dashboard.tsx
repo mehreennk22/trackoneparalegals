@@ -94,7 +94,7 @@ export function HeroDashboard() {
             { v: '0', l: 'Overdue' },
           ].map((stat) => (
             <div key={stat.l} className="bg-white/60 px-3 py-3">
-              <div className="font-display text-lg font-semibold text-slate-900">{stat.v}</div>
+              <div className="font-sans text-lg font-semibold text-slate-900">{stat.v}</div>
               <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{stat.l}</div>
             </div>
           ))}

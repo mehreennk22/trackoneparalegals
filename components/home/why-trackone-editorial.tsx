@@ -45,7 +45,7 @@ export function WhyTrackOneEditorial() {
       <motion.div
         style={{ y }}
         aria-hidden
-        className="pointer-events-none absolute left-0 top-1/3 font-display text-[18rem] font-medium leading-none text-white/[0.04] sm:text-[26rem]"
+        className="pointer-events-none absolute left-0 top-1/3 font-sans text-[18rem] font-medium leading-none text-white/[0.04] sm:text-[26rem]"
       >
         Why
       </motion.div>
@@ -68,7 +68,7 @@ export function WhyTrackOneEditorial() {
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: '-12%' }}
             transition={{ duration: 1, ease: easeOut }}
-            className="mt-6 font-display text-[2.5rem] leading-[1.08] tracking-[-0.025em] text-ink-500 sm:text-6xl lg:text-[4.75rem] lg:leading-[1.04]"
+            className="mt-6 font-sans text-[2.5rem] leading-[1.08] tracking-[-0.025em] text-ink-500 sm:text-6xl lg:text-[4.75rem] lg:leading-[1.04]"
           >
             Support Built Around How
             <br />
@@ -101,7 +101,7 @@ export function WhyTrackOneEditorial() {
                   {/* Oversized number */}
                   <div className="relative">
                     <span
-                      className="font-display text-[6rem] font-medium leading-none tracking-tight sm:text-[8rem]"
+                      className="font-sans text-[6rem] font-medium leading-none tracking-tight sm:text-[8rem]"
                       style={{ color: r.accent.replace('0.12', '0.35') }}
                     >
                       {r.num}
@@ -125,7 +125,7 @@ export function WhyTrackOneEditorial() {
                     transition={{ duration: 0.8, ease: easeOut, delay: 0.1 }}
                     className={reversed ? 'lg:text-right' : ''}
                   >
-                    <h3 className="font-display text-3xl leading-[1.1] tracking-[-0.02em] text-ink-500 sm:text-4xl">
+                    <h3 className="font-sans text-3xl leading-[1.1] tracking-[-0.02em] text-ink-500 sm:text-4xl">
                       {r.title}
                     </h3>
                     <p

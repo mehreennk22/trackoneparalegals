@@ -21,6 +21,7 @@ export type Service = {
   description: string;
   benefits: string[];
   deliverables: ServicePackage[];
+  simpleNote?: string;
 };
 
 export const services: Service[] = [
@@ -207,31 +208,21 @@ export const services: Service[] = [
   ],
 },
   {
-    slug: 'drawings',
-    title: 'Drawings',
-    short: 'Temporary capacity for projects, leave cover and workload peaks.',
-    icon: Layers,
-    category: 'Flexible Capacity',
-    description:
-      'Flexible capacity when workloads spike. Whether it is a project, leave cover or a seasonal peak, we provide trained support that ramps up quickly and scales back down when the surge passes.',
-    benefits: [
-      'Rapid ramp-up for workload peaks',
-      'Ideal for leave cover and projects',
-      'No permanent headcount commitment',
-      'Scoped to your exact requirement',
-    ],
-    deliverables: [
-      {
-        title: "What's Included",
-        details: [
-          'Scoped project plans',
-          'Capacity allocation summaries',
-          'Progress reports against milestones',
-          'Handover documentation on completion',
-        ],
-      },
-    ],
-  },
+  slug: 'drawings',
+  title: 'Drawings',
+  short: 'USPTO compliant patent drawings, with rush service available.',
+  icon: Layers,
+  category: 'Flexible Capacity',
+  description:
+    'Drafting utility patent drawings of various complexities. Timely completion of projects and rush projects are also available at rush rates.',
+  benefits: [
+    'USPTO compliant patent drawings',
+    'Rush services available',
+    'Typical completion time for regular orders is 5–7 business days',
+  ],
+  deliverables: [],
+  simpleNote: 'Contact us for a quote.',
+},
 ];
 
 export const serviceCategories = [

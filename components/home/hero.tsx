@@ -50,7 +50,7 @@ export function Hero() {
           </motion.span>
 
           <div className="flex flex-col gap-4">
-            <h1 className="font-display text-[2.75rem] leading-[1.05] tracking-[-0.025em] text-ink-500 sm:text-6xl lg:text-[4.5rem] lg:leading-[1.02]">
+            <h1 className="font-sans text-[2.75rem] leading-[1.05] tracking-[-0.025em] text-ink-500 sm:text-6xl lg:text-[4.5rem] lg:leading-[1.02]">
               <motion.span
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: easeOut, delay: 0.25 }}
-              className="font-display text-2xl italic leading-tight text-ink-500/80 sm:text-3xl"
+              className="font-sans text-2xl italic leading-tight text-ink-500/80 sm:text-3xl"
             >
               Your IP Admin, Handled. So Your Team Can Focus.
             </motion.p>

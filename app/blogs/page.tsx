@@ -13,7 +13,7 @@ export default function BlogsPage() {
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-400">
             Blogs
           </span>
-          <h1 className="mt-4 font-display text-4xl font-medium tracking-tight text-white sm:text-5xl">
+          <h1 className="mt-4 font-sans text-4xl font-medium tracking-tight text-white sm:text-5xl">
             Insights, coming soon
           </h1>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">

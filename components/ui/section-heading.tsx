@@ -42,7 +42,7 @@ export function SectionHeading({
       <BlurReveal>
         <h2
           className={cn(
-            'font-display text-[2.75rem] leading-[1.08] tracking-[-0.02em] sm:text-5xl lg:text-[3.75rem] lg:leading-[1.06]',
+            'font-sans text-[2.75rem] leading-[1.08] tracking-[-0.02em] sm:text-5xl lg:text-[3.75rem] lg:leading-[1.06]',
             dark ? 'text-white' : 'text-ink-500',
             align === 'center' && 'text-balance',
           )}

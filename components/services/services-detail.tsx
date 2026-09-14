@@ -80,7 +80,7 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
             <div className="relative flex h-full w-full items-center justify-center">
               <Art />
             </div>
-            <span className="absolute bottom-5 left-6 font-display text-5xl text-white/10 sm:text-6xl">
+            <span className="absolute bottom-5 left-6 font-sans text-5xl text-white/10 sm:text-6xl">
               0{index + 1}
             </span>
             <div className="absolute right-6 top-6 flex items-center gap-2 rounded-full bg-[#111E3B]/80 border border-white/10 px-3.5 py-1.5 text-xs font-medium text-white backdrop-blur">
@@ -123,28 +123,29 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
           </FadeUp>
 
           <FadeUp delay={0.2}>
-            <div>
-              <h4 className="mb-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-600">
-                Packages Offered
-              </h4>
+          <div>
+            <h4 className="mb-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-600">
+              Packages Offered
+            </h4>
+            {service.simpleNote ? (
+              <p className="text-sm leading-relaxed text-muted-foreground">{service.simpleNote}</p>
+            ) : (
               <div className="flex flex-col gap-2.5">
                 {service.deliverables.map((pkg) => (
                   <PackageAccordionItem key={pkg.title} pkg={pkg} />
                 ))}
               </div>
-            </div>
-          </FadeUp>
+            )}
+          </div>
+        </FadeUp>
 
           <FadeUp delay={0.26}>
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <CTAButton href="/contact" variant="primary">
-                Request Support
-              </CTAButton>
-              <CTAButton href="#top" variant="ghost" showArrow={false}>
-                Learn More
-              </CTAButton>
-            </div>
-          </FadeUp>
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            <CTAButton href="/contact" variant="primary">
+              Request Support
+            </CTAButton>
+          </div>
+        </FadeUp>
         </div>
       </div>
     </article>

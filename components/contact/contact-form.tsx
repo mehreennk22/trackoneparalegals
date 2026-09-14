@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, Mail, MapPin, Clock, ArrowRight } from 'lucide-react';
+import { Check, Mail, MapPin, Clock, ArrowRight, Calendar } from 'lucide-react';
 import { MagneticButton } from '@/components/ui/magnetic-button';
 import { cn } from '@/lib/utils';
 
@@ -171,7 +171,7 @@ export function ContactForm() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="mt-6 font-display text-3xl font-medium tracking-tight text-ink-500"
+                className="mt-6 font-sans text-3xl font-medium tracking-tight text-ink-500"
               >
                 Thank you — message received.
               </motion.h3>
@@ -260,7 +260,7 @@ export function ContactInfo() {
   const items = [
     { icon: Mail, label: 'Email', value: 'hello@trackoneparalegals.com', href: 'mailto:hello@trackoneparalegals.com' },
     { icon: Clock, label: 'Response Time', value: '24-48 hours' },
-   
+    { icon: Calendar, label: 'Schedule a Call', value: 'Book a slot', href: 'https://calendly.com/shahzina-trackoneparalegals' },
   ];
   return (
     <div className="flex flex-col gap-3">
@@ -276,11 +276,16 @@ export function ContactInfo() {
                 {it.label}
               </div>
               {it.href ? (
-                <a href={it.href} className="link-underline text-sm font-medium text-white">
+                <a
+                  href={it.href}
+                  target={it.href.startsWith('http') ? '_blank' : undefined}
+                  rel={it.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="link-underline block truncate text-sm font-medium text-white"
+                >
                   {it.value}
                 </a>
               ) : (
-                <div className="text-sm font-medium text-white">{it.value}</div>
+                <div className="truncate text-sm font-medium text-white">{it.value}</div>
               )}
             </div>
           </div>

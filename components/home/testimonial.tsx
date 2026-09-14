@@ -32,12 +32,12 @@ export function Testimonial() {
             />
 
             <Quote className="relative h-12 w-12 text-brand-500/30" strokeWidth={1} />
-            <blockquote className="relative mt-6 font-display text-2xl font-medium leading-snug tracking-tight text-ink-500 sm:text-[2rem] sm:leading-[1.3]">
+            <blockquote className="relative mt-6 font-sans text-2xl font-medium leading-snug tracking-tight text-ink-500 sm:text-[2rem] sm:leading-[1.3]">
               “Flexible capacity when we need it without the overhead of hiring. Straightforward to
               work with and consistently reliable.”
             </blockquote>
             <div className="relative mt-8 flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-iris-500 font-display text-lg font-semibold text-white">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-iris-500 font-sans text-lg font-semibold text-white">
                 P
               </div>
               <div>

@@ -1,6 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { AdministrativeIso, DocketingIso, ParalegalIso, RenewalsIso } from '../services/service-illustrations';
+import {IsoPanel as IsoPanel, G} from './ui/illustration-helpers';
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -276,6 +278,65 @@ export function OverflowArt() {
     </svg>
   );
 }
+/* Drawings — technical patent drawing being drafted */
+export function DrawingsIso() {
+  return (
+    <svg viewBox="0 0 420 300" className="h-full w-full" fill="none">
+      <defs>
+        <G id="dr-g" from="#2F6BFF" to="#06B6D4" />
+      </defs>
+
+      {/* drafting board panel */}
+      <motion.g initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: easeOut }}>
+        <IsoPanel x={70} y={50} w={280} h={200} fill="white" stroke="#E5E7EB" />
+        <rect x="70" y="50" width="280" height="34" rx="10" fill="url(#dr-g)" opacity="0.95" />
+        <circle cx="88" cy="67" r="2.5" fill="white" opacity="0.8" />
+        <circle cx="98" cy="67" r="2.5" fill="white" opacity="0.5" />
+        <text x="210" y="72" textAnchor="middle" fontSize="12" fontWeight="600" fill="white" fontFamily="Manrope, sans-serif">Drawing Draft — Fig. 1</text>
+
+        {/* blueprint grid */}
+        <rect x="86" y="98" width="248" height="136" rx="6" fill="#F8F9FC" />
+        {Array.from({ length: 8 }).map((_, i) => (
+          <line key={`v${i}`} x1={102 + i * 32} y1="98" x2={102 + i * 32} y2="234" stroke="#E2E8F0" strokeWidth="1" />
+        ))}
+        {Array.from({ length: 5 }).map((_, i) => (
+          <line key={`h${i}`} x1="86" y1={112 + i * 28} x2="334" y2={112 + i * 28} stroke="#E2E8F0" strokeWidth="1" />
+        ))}
+
+        {/* the drawn technical figure — simple exploded mechanical shape */}
+        <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3, duration: 0.4 }}>
+          <motion.rect x="168" y="128" width="84" height="52" rx="4" fill="none" stroke="url(#dr-g)" strokeWidth="2"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.9 }} />
+          <motion.circle cx="210" cy="154" r="16" fill="none" stroke="url(#dr-g)" strokeWidth="2"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 0.7, duration: 0.6 }} />
+          <motion.path d="M168 128 L142 108 M252 128 L278 108" stroke="url(#dr-g)" strokeWidth="1.4" strokeDasharray="2 2"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 1, duration: 0.5 }} />
+        </motion.g>
+
+        {/* reference numeral callouts, like real patent drawings */}
+        {[
+          { x: 142, y: 100, num: '10' },
+          { x: 278, y: 100, num: '12' },
+          { x: 210, y: 200, num: '14' },
+        ].map((c, i) => (
+          <motion.g key={c.num} initial={{ opacity: 0, scale: 0.6 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.2 + i * 0.15, type: 'spring', stiffness: 220 }}>
+            <circle cx={c.x} cy={c.y} r="10" fill="white" stroke="url(#dr-g)" strokeWidth="1.4" />
+            <text x={c.x} y={c.y + 3.5} textAnchor="middle" fontSize="9" fontWeight="700" fill="#2F6BFF" fontFamily="Manrope, sans-serif">{c.num}</text>
+          </motion.g>
+        ))}
+      </motion.g>
+
+      {/* pencil/tool chip */}
+      <motion.g animate={{ y: [0, -7, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
+        <rect x="316" y="26" width="86" height="26" rx="13" fill="white" stroke="#E5E7EB" />
+        <circle cx="330" cy="39" r="4" fill="url(#dr-g)" />
+        <text x="342" y="43" fontSize="9" fontWeight="600" fill="#081522" fontFamily="Manrope, sans-serif">USPTO-ready</text>
+      </motion.g>
+
+      <circle cx="210" cy="150" r="92" fill="url(#dr-g)" opacity="0.05" />
+    </svg>
+  );
+}
 
 /* Administrative Support — Document processing workflow */
 export function AdministrativeArt() {
@@ -331,3 +392,10 @@ export function AdministrativeArt() {
     </svg>
   );
 }
+export const serviceIllustrations = [
+  ParalegalArt,
+  DocketingArt,
+  RenewalsArt,
+  AdministrativeArt,
+  DrawingsIso,
+];
