@@ -1,172 +1,147 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { AdministrativeIso, DocketingIso, ParalegalIso, RenewalsIso } from '../services/service-illustrations';
-
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
-/* Each illustration is a unique animated SVG representing the actual workflow */
+const G = ({ id, from, to }: { id: string; from: string; to: string }) => (
+  <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stopColor={from} />
+    <stop offset="100%" stopColor={to} />
+  </linearGradient>
+);
 
-/* Paralegal Support — Document review workspace */
-export function ParalegalArt() {
+/* Shared isometric helpers */
+function IsoPanel({ x, y, w, h, fill, stroke }: { x: number; y: number; w: number; h: number; fill: string; stroke?: string }) {
+  return <rect x={x} y={y} width={w} height={h} rx={10} fill={fill} stroke={stroke} strokeWidth={stroke ? 1.2 : 0} />;
+}
+
+/* Paralegal Support — workspace reviewing patent/trademark docs */
+export function ParalegalIso() {
   return (
-    <svg viewBox="0 0 400 300" className="h-full w-full" fill="none">
+    <svg viewBox="0 0 420 300" className="h-full w-full" fill="none">
       <defs>
-        <linearGradient id="pa-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#2F6BFF" />
-          <stop offset="100%" stopColor="#4F46E5" />
-        </linearGradient>
+        <G id="pa-g" from="#2F6BFF" to="#4F46E5" />
+        <G id="pa-g-warm" from="#06B6D4" to="#2F6BFF" />
       </defs>
-      {/* desk surface */}
-      <rect x="40" y="220" width="320" height="60" rx="8" fill="#F2F0EA" />
-      {/* main document */}
-      <motion.g
-        initial={{ y: 12, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: easeOut }}
-      >
-        <rect x="120" y="60" width="160" height="170" rx="10" fill="white" stroke="#E5E7EB" strokeWidth="1.5" />
-        <rect x="138" y="80" width="80" height="8" rx="4" fill="#081522" opacity="0.08" />
-        <motion.line x1="138" y1="104" x2="262" y2="104" stroke="#CBD5E1" strokeWidth="2"
-          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }} />
-        <motion.line x1="138" y1="120" x2="240" y2="120" stroke="#CBD5E1" strokeWidth="2"
-          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }} />
-        <motion.line x1="138" y1="136" x2="252" y2="136" stroke="#CBD5E1" strokeWidth="2"
-          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }} />
-        <motion.line x1="138" y1="152" x2="220" y2="152" stroke="#CBD5E1" strokeWidth="2"
-          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.6 }} />
-        {/* review checkmark */}
-        <motion.circle cx="248" cy="196" r="16" fill="none" stroke="url(#pa-grad)" strokeWidth="2"
-          initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, type: 'spring', stiffness: 200 }} />
-        <motion.path d="M241 196 l5 5 l9 -10" stroke="url(#pa-grad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 1, duration: 0.4 }} />
+      <path d="M60 250 L210 210 L360 250 L210 290 Z" fill="#F4EFE6" />
+      <ellipse cx="210" cy="232" rx="88" ry="14" fill="#081522" opacity="0.05" />
+      <motion.g initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: easeOut }}>
+        <IsoPanel x={120} y={70} w={180} h={120} fill="white" stroke="#E5E7EB" />
+        <rect x="120" y="70" width="180" height="16" rx="8" fill="url(#pa-g)" opacity="0.9" />
+        <circle cx="132" cy="78" r="2.5" fill="white" opacity="0.8" />
+        <circle cx="140" cy="78" r="2.5" fill="white" opacity="0.5" />
+        <rect x="132" y="94" width="156" height="84" rx="6" fill="#F8F9FC" />
+        {[0, 1, 2, 3].map((i) => (
+          <motion.line key={i} x1="144" y1={110 + i * 17} x2={276 - i * 12} y2={110 + i * 17}
+            stroke={i === 1 ? '#5EC8FF' : '#CBD5E1'} strokeWidth="2" strokeOpacity={i === 1 ? 0.9 : 1}
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 + i * 0.12, duration: 0.7 }} />
+        ))}
+        <motion.circle cx="262" cy="158" r="11" fill="none" stroke="url(#pa-g)" strokeWidth="2"
+          initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.9, type: 'spring', stiffness: 200 }} />
+        <motion.path d="M256 158 l4 4 l8 -8" stroke="url(#pa-g)" strokeWidth="2.2" strokeLinecap="round" fill="none"
+          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 1.1, duration: 0.4 }} />
+        <path d="M200 190 L200 210 M180 210 L220 210" stroke="#CBD5E1" strokeWidth="2" strokeLinecap="round" />
       </motion.g>
-      {/* secondary stacked docs */}
-      <motion.rect x="80" y="100" width="40" height="130" rx="6" fill="white" stroke="#E5E7EB"
-        initial={{ x: -10, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }} />
-      <motion.rect x="290" y="90" width="40" height="140" rx="6" fill="white" stroke="#E5E7EB"
-        initial={{ x: 10, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 }} />
-      {/* cursor */}
-      <motion.g
-        animate={{ x: [0, 30, 0], y: [0, -10, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <path d="M200 180 l0 14 l4 -4 l3 7 l3 -1 l-3 -7 l5 0 z" fill="url(#pa-grad)" />
+      <motion.g animate={{ y: [0, -7, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}>
+        <IsoPanel x={60} y={120} w={44} h={58} fill="white" stroke="#E5E7EB" />
+        <rect x="60" y="120" width="44" height="8" rx="4" fill="url(#pa-g-warm)" />
+        <line x1="70" y1="140" x2="94" y2="140" stroke="#CBD5E1" strokeWidth="2" />
+        <line x1="70" y1="150" x2="90" y2="150" stroke="#CBD5E1" strokeWidth="2" />
+        <rect x="66" y="160" width="14" height="10" rx="2" fill="url(#pa-g-warm)" opacity="0.5" />
       </motion.g>
+      <motion.g animate={{ y: [0, -6, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}>
+        <IsoPanel x={320} y={110} w={44} h={58} fill="white" stroke="#E5E7EB" />
+        <rect x="320" y="110" width="44" height="8" rx="4" fill="url(#pa-g)" />
+        <line x1="330" y1="130" x2="354" y2="130" stroke="#CBD5E1" strokeWidth="2" />
+        <line x1="330" y1="140" x2="350" y2="140" stroke="#CBD5E1" strokeWidth="2" />
+        <circle cx="340" cy="156" r="5" fill="url(#pa-g)" opacity="0.6" />
+      </motion.g>
+      <motion.g initial={{ opacity: 0, scale: 0.7 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.3, type: 'spring', stiffness: 220 }}>
+        <circle cx="300" cy="82" r="13" fill="#06B6D4" />
+        <path d="M294 82 l4 4 l8 -9" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      </motion.g>
+      <circle cx="210" cy="130" r="80" fill="url(#pa-g)" opacity="0.08" />
+      <circle cx="300" cy="82" r="40" fill="#06B6D4" opacity="0.06" />
     </svg>
   );
 }
 
-/* Docketing — Interactive calendar with moving deadlines */
-export function DocketingArt() {
+/* Docketing — calendar with deadlines */
+export function DocketingIso() {
   return (
-    <svg viewBox="0 0 400 300" className="h-full w-full" fill="none">
+    <svg viewBox="0 0 420 300" className="h-full w-full" fill="none">
       <defs>
-        <linearGradient id="do-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#2F6BFF" />
-          <stop offset="100%" stopColor="#06B6D4" />
-        </linearGradient>
+        <G id="do-g" from="#2F6BFF" to="#06B6D4" />
       </defs>
-      <motion.rect x="60" y="40" width="280" height="220" rx="14" fill="white" stroke="#E5E7EB" strokeWidth="1.5"
-        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} />
-      {/* header */}
-      <rect x="60" y="40" width="280" height="40" rx="14" fill="#F8F7F4" />
-      <rect x="60" y="66" width="280" height="14" fill="#F8F7F4" />
-      <text x="200" y="66" textAnchor="middle" fontSize="14" fontWeight="600" fill="#081522" fontFamily="Inter, sans-serif">Deadline Calendar</text>
-      {/* day labels */}
-      {['M', 'T', 'W', 'T', 'F'].map((d, i) => (
-        <text key={i} x={92 + i * 52} y="102" textAnchor="middle" fontSize="10" fill="#94A3B8" fontFamily="Inter, sans-serif">{d}</text>
-      ))}
-      {/* grid cells */}
-      {Array.from({ length: 15 }).map((_, i) => {
-        const col = i % 5;
-        const row = Math.floor(i / 5);
-        const x = 78 + col * 52;
-        const y = 114 + row * 44;
-        const isDeadline = i === 4 || i === 8 || i === 13;
-        return (
-          <motion.rect
-            key={i}
-            x={x} y={y} width="40" height="36" rx="6"
-            fill={isDeadline ? 'url(#do-grad)' : '#F2F0EA'}
-            opacity={isDeadline ? 0.15 : 1}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: isDeadline ? 0.15 : 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.04 }}
-          />
-        );
-      })}
-      {/* moving deadline pulse */}
-      {[4, 8, 13].map((idx, k) => {
-        const col = idx % 5;
-        const row = Math.floor(idx / 5);
-        const x = 78 + col * 52 + 20;
-        const y = 114 + row * 44 + 18;
-        return (
-          <motion.circle
-            key={idx}
-            cx={x} cy={y} r="6" fill="url(#do-grad)"
-            animate={{ scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }}
-            transition={{ duration: 2.5, repeat: Infinity, delay: k * 0.8, ease: 'easeInOut' }}
-          />
-        );
-      })}
-      {/* connecting arrow */}
-      <motion.path
-        d="M172 132 C 180 160, 200 180, 224 186"
-        stroke="url(#do-grad)" strokeWidth="1.5" strokeDasharray="3 3" fill="none"
-        initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 0.6 }} viewport={{ once: true }} transition={{ delay: 0.8, duration: 1 }}
-      />
+      <motion.g initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: easeOut }}>
+        <IsoPanel x={80} y={50} w={260} h={200} fill="white" stroke="#E5E7EB" />
+        <rect x="80" y="50" width="260" height="40" rx="10" fill="url(#do-g)" opacity="0.95" />
+        <circle cx="98" cy="62" r="2.5" fill="white" opacity="0.8" />
+        <circle cx="108" cy="62" r="2.5" fill="white" opacity="0.5" />
+        <rect x="80" y="78" width="260" height="12" fill="#F8F9FC" />
+        <text x="210" y="76" textAnchor="middle" fontSize="13" fontWeight="600" fill="white" fontFamily="Manrope, sans-serif">Deadline Calendar</text>
+        {['M', 'T', 'W', 'T', 'F'].map((d, i) => (
+          <text key={i} x={108 + i * 48} y="112" textAnchor="middle" fontSize="9" fill="#94A3B8" fontFamily="Manrope, sans-serif">{d}</text>
+        ))}
+        {Array.from({ length: 15 }).map((_, i) => {
+          const col = i % 5, row = Math.floor(i / 5);
+          const x = 96 + col * 48, y = 122 + row * 40;
+          const isDeadline = i === 3 || i === 8 || i === 11;
+          return (
+            <motion.rect key={i} x={x} y={y} width="36" height="32" rx="6"
+              fill={isDeadline ? 'url(#do-g)' : '#F2F0EA'} opacity={isDeadline ? 0.18 : 1}
+              initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: isDeadline ? 0.18 : 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.03 }} />
+          );
+        })}
+        {[3, 8, 11].map((idx, k) => {
+          const col = idx % 5, row = Math.floor(idx / 5);
+          const cx = 96 + col * 48 + 18, cy = 122 + row * 40 + 16;
+          return (
+            <motion.circle key={idx} cx={cx} cy={cy} r="5" fill="url(#do-g)"
+              animate={{ scale: [1, 1.7, 1], opacity: [1, 0.4, 1] }} transition={{ duration: 2.4, repeat: Infinity, delay: k * 0.7, ease: 'easeInOut' }} />
+          );
+        })}
+        <motion.path d="M150 138 C 170 168, 200 188, 228 198" stroke="url(#do-g)" strokeWidth="1.4" strokeDasharray="3 3" fill="none"
+          initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 0.6 }} viewport={{ once: true }} transition={{ delay: 0.7, duration: 1 }} />
+      </motion.g>
+      <motion.g animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
+        <rect x="320" y="30" width="76" height="26" rx="13" fill="white" stroke="#E5E7EB" />
+        <circle cx="334" cy="43" r="4" fill="url(#do-g)" />
+        <text x="346" y="47" fontSize="9" fontWeight="600" fill="#081522" fontFamily="Manrope, sans-serif">Reminder</text>
+      </motion.g>
+      <circle cx="210" cy="150" r="90" fill="url(#do-g)" opacity="0.05" />
     </svg>
   );
 }
 
-/* Maintenance & Renewals — Circular renewal workflow */
-export function RenewalsArt() {
+/* Renewals — circular workflow */
+export function RenewalsIso() {
   return (
-    <svg viewBox="0 0 400 300" className="h-full w-full" fill="none">
+    <svg viewBox="0 0 420 300" className="h-full w-full" fill="none">
       <defs>
-        <linearGradient id="re-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#06B6D4" />
-          <stop offset="100%" stopColor="#2F6BFF" />
-        </linearGradient>
+        <G id="re-g" from="#06B6D4" to="#2F6BFF" />
       </defs>
-      {/* outer ring */}
-      <circle cx="200" cy="150" r="90" stroke="#E5E7EB" strokeWidth="10" />
-      <motion.circle
-        cx="200" cy="150" r="90" stroke="url(#re-grad)" strokeWidth="10" strokeLinecap="round" fill="none"
-        strokeDasharray="565" transform="rotate(-90 200 150)"
-        initial={{ strokeDashoffset: 565 }} whileInView={{ strokeDashoffset: 140 }} viewport={{ once: true }} transition={{ duration: 1.6, ease: easeOut }}
-      />
-      {/* rotating dot */}
-      <motion.g
-        style={{ transformOrigin: '200px 150px' }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-      >
-        <circle cx="200" cy="60" r="7" fill="url(#re-grad)" />
+      <circle cx="210" cy="150" r="96" fill="url(#re-g)" opacity="0.05" />
+      <circle cx="210" cy="150" r="92" stroke="#E5E7EB" strokeWidth="10" />
+      <motion.circle cx="210" cy="150" r="92" stroke="url(#re-g)" strokeWidth="10" strokeLinecap="round" fill="none"
+        strokeDasharray="578" transform="rotate(-90 210 150)"
+        initial={{ strokeDashoffset: 578 }} whileInView={{ strokeDashoffset: 145 }} viewport={{ once: true }} transition={{ duration: 1.6, ease: easeOut }} />
+      <motion.g style={{ transformOrigin: '210px 150px' }} animate={{ rotate: 360 }} transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}>
+        <circle cx="210" cy="58" r="8" fill="url(#re-g)" />
+        <circle cx="210" cy="58" r="3" fill="white" />
       </motion.g>
-      {/* center content */}
-      <text x="200" y="146" textAnchor="middle" fontSize="32" fontWeight="700" fill="#081522" fontFamily="Cormorant Garamond, serif">75%</text>
-      <text x="200" y="168" textAnchor="middle" fontSize="11" fill="#6B7280" fontFamily="Inter, sans-serif">Renewals on track</text>
-      {/* orbiting labels */}
+      <circle cx="210" cy="150" r="58" fill="white" />
+      <text x="210" y="146" textAnchor="middle" fontSize="30" fontWeight="700" fill="#2F6BFF" fontFamily="Manrope, sans-serif">75%</text>
+      <text x="210" y="168" textAnchor="middle" fontSize="10" fill="#6B7280" fontFamily="Manrope, sans-serif">on track</text>
       {['Monitor', 'Remind', 'Pay', 'Confirm'].map((label, i) => {
         const angle = (i * 90 - 45) * (Math.PI / 180);
-        const x = 200 + Math.cos(angle) * 110;
-        const y = 150 + Math.sin(angle) * 110;
+        const x = 210 + Math.cos(angle) * 116, y = 150 + Math.sin(angle) * 116;
         return (
-          <motion.g
-            key={label}
-            initial={{ opacity: 0, scale: 0.6 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 + i * 0.15 }}
-          >
-            <rect x={x - 34} y={y - 12} width="68" height="24" rx="12" fill="white" stroke="#E5E7EB" />
-            <text x={x} y={y + 4} textAnchor="middle" fontSize="10" fontWeight="600" fill="#081522" fontFamily="Inter, sans-serif">{label}</text>
+          <motion.g key={label} initial={{ opacity: 0, scale: 0.6 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.6 + i * 0.14 }}>
+            <rect x={x - 36} y={y - 13} width="72" height="26" rx="13" fill="white" stroke="#E5E7EB" />
+            <circle cx={x - 24} cy={y} r="3" fill="url(#re-g)" />
+            <text x={x + 6} y={y + 4} textAnchor="middle" fontSize="10" fontWeight="600" fill="#081522" fontFamily="Manrope, sans-serif">{label}</text>
           </motion.g>
         );
       })}
@@ -174,163 +149,108 @@ export function RenewalsArt() {
   );
 }
 
-/* Records Management — Secure database visualization */
-export function RecordsArt() {
+/* Administrative — document management workspace */
+export function AdministrativeIso() {
   return (
-    <svg viewBox="0 0 400 300" className="h-full w-full" fill="none">
+    <svg viewBox="0 0 420 300" className="h-full w-full" fill="none">
       <defs>
-        <linearGradient id="rm-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#4F46E5" />
-          <stop offset="100%" stopColor="#06B6D4" />
-        </linearGradient>
+        <G id="ad-g" from="#2F6BFF" to="#4F46E5" />
       </defs>
-      {/* database cylinders */}
-      {[0, 1, 2].map((i) => {
-        const y = 80 + i * 60;
-        return (
-          <motion.g
-            key={i}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.15, ease: easeOut }}
-          >
-            <ellipse cx="200" cy={y} rx="80" ry="16" fill="white" stroke="#E5E7EB" strokeWidth="1.5" />
-            <path d={`M120 ${y} v24 a80 16 0 0 0 160 0 v-24`} fill="white" stroke="#E5E7EB" strokeWidth="1.5" />
-            <ellipse cx="200" cy={y} rx="80" ry="16" fill="none" stroke="url(#rm-grad)" strokeWidth="1.5" opacity="0.5" />
-            {/* data lines */}
-            <motion.line x1="140" y1={y + 6} x2="260" y2={y + 6} stroke="#CBD5E1" strokeWidth="2"
-              initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.15 + 0.3 }} />
-          </motion.g>
-        );
-      })}
-      {/* verification checkmarks */}
-      {[80, 140, 200].map((y, i) => (
-        <motion.g key={i}
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8 + i * 0.2, type: 'spring', stiffness: 200 }}
-        >
-          <circle cx="310" cy={y} r="10" fill="url(#rm-grad)" />
-          <path d={`M305 ${y} l3 3 l6 -6`} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        </motion.g>
-      ))}
-      {/* shield */}
-      <motion.path
-        d="M200 30 l14 6 v14 a14 14 0 0 1 -28 0 v-14 z" fill="url(#rm-grad)" opacity="0.15"
-        initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.5, type: 'spring' }}
-      />
-    </svg>
-  );
-}
-
-/* Overflow Support — Workload balancing illustration */
-export function OverflowArt() {
-  return (
-    <svg viewBox="0 0 400 300" className="h-full w-full" fill="none">
-      <defs>
-        <linearGradient id="of-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#2F6BFF" />
-          <stop offset="100%" stopColor="#10B981" />
-        </linearGradient>
-      </defs>
-      {/* left bar group (overloaded) */}
-      {[0, 1, 2, 3].map((i) => (
-        <motion.rect
-          key={i}
-          x={70} y={230 - i * 36} width="40" height={28 + i * 6} rx="6"
-          fill={i === 3 ? '#FCA5A5' : '#CBD5E1'} opacity={i === 3 ? 0.6 : 0.4}
-          initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }}
-          transition={{ delay: i * 0.1, ease: easeOut }}
-          style={{ transformOrigin: '90px 250px' }}
-        />
-      ))}
-      {/* arrow */}
-      <motion.path
-        d="M140 150 Q 180 120, 220 150" stroke="url(#of-grad)" strokeWidth="2.5" strokeLinecap="round" fill="none"
-        initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.8 }}
-      />
-      <motion.path d="M214 144 l8 6 l-2 -10 z" fill="url(#of-grad)"
-        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1.2 }} />
-      {/* right bar group (balanced) */}
-      {[0, 1, 2, 3].map((i) => (
-        <motion.rect
-          key={i}
-          x={250} y={230 - i * 22} width="40" height={18 + i * 4} rx="6"
-          fill="url(#of-grad)" opacity={0.3 + i * 0.15}
-          initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }}
-          transition={{ delay: 0.8 + i * 0.1, ease: easeOut }}
-          style={{ transformOrigin: '270px 250px' }}
-        />
-      ))}
-      {/* labels */}
-      <text x="90" y="270" textAnchor="middle" fontSize="10" fill="#94A3B8" fontFamily="Inter, sans-serif">Before</text>
-      <text x="270" y="270" textAnchor="middle" fontSize="10" fill="#081522" fontWeight="600" fontFamily="Inter, sans-serif">After</text>
-      {/* floating capacity chip */}
-      <motion.g
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <rect x="170" y="60" width="60" height="22" rx="11" fill="white" stroke="#E5E7EB" />
-        <text x="200" y="75" textAnchor="middle" fontSize="10" fontWeight="600" fill="url(#of-grad)" fontFamily="Inter, sans-serif">+ Capacity</text>
-      </motion.g>
-    </svg>
-  );
-}
-
-
-/* Administrative Support — Document processing workflow */
-export function AdministrativeArt() {
-  return (
-    <svg viewBox="0 0 400 300" className="h-full w-full" fill="none">
-      <defs>
-        <linearGradient id="ad-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#2F6BFF" />
-          <stop offset="100%" stopColor="#4F46E5" />
-        </linearGradient>
-      </defs>
-      {/* conveyor belt */}
-      <rect x="30" y="200" width="340" height="6" rx="3" fill="#E5E7EB" />
-      <motion.rect x="30" y="200" width="340" height="6" rx="3" fill="url(#ad-grad)" opacity="0.3"
-        initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.2 }} style={{ transformOrigin: '30px 203px' }} />
-      {/* belt wheels */}
-      {[30, 370].map((x) => (
-        <circle key={x} cx={x} cy="203" r="10" fill="white" stroke="#E5E7EB" strokeWidth="1.5" />
-      ))}
-      {/* documents moving along belt */}
+      <rect x="40" y="210" width="340" height="6" rx="3" fill="#E5E7EB" />
+      <motion.rect x="40" y="210" width="340" height="6" rx="3" fill="url(#ad-g)" opacity="0.35"
+        initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.2 }} style={{ transformOrigin: '40px 213px' }} />
+      <circle cx="40" cy="213" r="9" fill="white" stroke="#E5E7EB" />
+      <circle cx="380" cy="213" r="9" fill="white" stroke="#E5E7EB" />
       {[0, 1, 2].map((i) => (
-        <motion.g
-          key={i}
-          initial={{ x: -40, opacity: 0 }}
-          animate={{ x: [0, 260, 320], opacity: [0, 1, 0] }}
-          transition={{ duration: 5, repeat: Infinity, delay: i * 1.6, ease: 'easeInOut' }}
-        >
-          <rect x="60" y="150" width="50" height="50" rx="8" fill="white" stroke="#E5E7EB" strokeWidth="1.5" />
-          <line x1="70" y1="165" x2="100" y2="165" stroke="#CBD5E1" strokeWidth="2" />
-          <line x1="70" y1="175" x2="95" y2="175" stroke="#CBD5E1" strokeWidth="2" />
-          <line x1="70" y1="185" x2="98" y2="185" stroke="#CBD5E1" strokeWidth="2" />
+        <motion.g key={i} initial={{ x: -30, opacity: 0 }} animate={{ x: [0, 250, 320], opacity: [0, 1, 0] }} transition={{ duration: 5, repeat: Infinity, delay: i * 1.6, ease: 'easeInOut' }}>
+          <rect x="70" y="158" width="48" height="50" rx="7" fill="white" stroke="#E5E7EB" strokeWidth="1.2" />
+          <rect x="70" y="158" width="48" height="8" rx="4" fill="url(#ad-g)" opacity="0.7" />
+          <line x1="80" y1="178" x2="108" y2="178" stroke="#CBD5E1" strokeWidth="2" />
+          <line x1="80" y1="188" x2="104" y2="188" stroke="#CBD5E1" strokeWidth="2" />
+          <line x1="80" y1="198" x2="106" y2="198" stroke="#CBD5E1" strokeWidth="2" />
         </motion.g>
       ))}
-      {/* processing station */}
-      <motion.g
-        initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-      >
-        <rect x="170" y="80" width="60" height="60" rx="10" fill="white" stroke="url(#ad-grad)" strokeWidth="2" />
-        <motion.circle cx="200" cy="110" r="14" fill="none" stroke="url(#ad-grad)" strokeWidth="2"
-          animate={{ rotate: 360 }} transition={{ duration: 3, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '200px 110px' }} />
-        <path d="M200 96 v6 M200 118 v6 M186 110 h6 M208 110 h6" stroke="url(#ad-grad)" strokeWidth="2" strokeLinecap="round" />
+      <motion.g initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+        <rect x="176" y="86" width="56" height="56" rx="10" fill="white" stroke="url(#ad-g)" strokeWidth="2" />
+        <motion.circle cx="204" cy="114" r="13" fill="none" stroke="url(#ad-g)" strokeWidth="2"
+          animate={{ rotate: 360 }} transition={{ duration: 3, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '204px 114px' }} />
+        <path d="M204 101 v6 M204 121 v6 M191 114 h6 M211 114 h6" stroke="url(#ad-g)" strokeWidth="2" strokeLinecap="round" />
       </motion.g>
-      {/* output checkmark */}
-      <motion.g
-        initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, type: 'spring' }}
-      >
-        <circle cx="340" cy="150" r="14" fill="url(#ad-grad)" />
-        <path d="M334 150 l4 4 l8 -9" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <motion.g initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, type: 'spring' }}>
+        <circle cx="350" cy="156" r="13" fill="url(#ad-g)" />
+        <path d="M344 156 l4 4 l8 -9" stroke="white" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       </motion.g>
-      {/* input label */}
-      <text x="60" y="140" fontSize="10" fill="#94A3B8" fontFamily="Inter, sans-serif">Input</text>
-      <text x="330" y="135" fontSize="10" fill="#081522" fontWeight="600" fontFamily="Inter, sans-serif">Done</text>
+      <text x="70" y="148" fontSize="9" fill="#94A3B8" fontFamily="Manrope, sans-serif">Input</text>
+      <text x="346" y="142" fontSize="9" fontWeight="600" fill="#081522" fontFamily="Manrope, sans-serif">Done</text>
+      <circle cx="204" cy="114" r="70" fill="url(#ad-g)" opacity="0.05" />
     </svg>
   );
 }
+
+/* Drawings — technical patent drawing being drafted */
+export function DrawingsIso() {
+  return (
+    <svg viewBox="0 0 420 300" className="h-full w-full" fill="none">
+      <defs>
+        <G id="dr-g" from="#2F6BFF" to="#06B6D4" />
+      </defs>
+
+      <motion.g initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: easeOut }}>
+        <IsoPanel x={70} y={50} w={280} h={200} fill="white" stroke="#E5E7EB" />
+        <rect x="70" y="50" width="280" height="34" rx="10" fill="url(#dr-g)" opacity="0.95" />
+        <circle cx="88" cy="67" r="2.5" fill="white" opacity="0.8" />
+        <circle cx="98" cy="67" r="2.5" fill="white" opacity="0.5" />
+        <text x="210" y="72" textAnchor="middle" fontSize="12" fontWeight="600" fill="white" fontFamily="Manrope, sans-serif">Drawing Draft — Fig. 1</text>
+
+        <rect x="86" y="98" width="248" height="136" rx="6" fill="#F8F9FC" />
+        {Array.from({ length: 8 }).map((_, i) => (
+          <line key={`v${i}`} x1={102 + i * 32} y1="98" x2={102 + i * 32} y2="234" stroke="#E2E8F0" strokeWidth="1" />
+        ))}
+        {Array.from({ length: 5 }).map((_, i) => (
+          <line key={`h${i}`} x1="86" y1={112 + i * 28} x2="334" y2={112 + i * 28} stroke="#E2E8F0" strokeWidth="1" />
+        ))}
+
+        <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3, duration: 0.4 }}>
+          <motion.rect x="168" y="128" width="84" height="52" rx="4" fill="none" stroke="url(#dr-g)" strokeWidth="2"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.9 }} />
+          <motion.circle cx="210" cy="154" r="16" fill="none" stroke="url(#dr-g)" strokeWidth="2"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 0.7, duration: 0.6 }} />
+          <motion.path d="M168 128 L142 108 M252 128 L278 108" stroke="url(#dr-g)" strokeWidth="1.4" strokeDasharray="2 2"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 1, duration: 0.5 }} />
+        </motion.g>
+
+        {[
+          { x: 142, y: 100, num: '10' },
+          { x: 278, y: 100, num: '12' },
+          { x: 210, y: 200, num: '14' },
+        ].map((c, i) => (
+          <motion.g key={c.num} initial={{ opacity: 0, scale: 0.6 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.2 + i * 0.15, type: 'spring', stiffness: 220 }}>
+            <circle cx={c.x} cy={c.y} r="10" fill="white" stroke="url(#dr-g)" strokeWidth="1.4" />
+            <text x={c.x} y={c.y + 3.5} textAnchor="middle" fontSize="9" fontWeight="700" fill="#2F6BFF" fontFamily="Manrope, sans-serif">{c.num}</text>
+          </motion.g>
+        ))}
+      </motion.g>
+
+      <motion.g animate={{ y: [0, -7, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
+        <rect x="316" y="26" width="86" height="26" rx="13" fill="white" stroke="#E5E7EB" />
+        <circle cx="330" cy="39" r="4" fill="url(#dr-g)" />
+        <text x="342" y="43" fontSize="9" fontWeight="600" fill="#081522" fontFamily="Manrope, sans-serif">USPTO-ready</text>
+      </motion.g>
+
+      <circle cx="210" cy="150" r="92" fill="url(#dr-g)" opacity="0.05" />
+    </svg>
+  );
+}
+
+export const serviceIllustrations = [
+  ParalegalIso,
+  DocketingIso,
+  RenewalsIso,
+  AdministrativeIso,
+  DrawingsIso,
+];
+
+
+
+
+
