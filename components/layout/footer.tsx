@@ -127,15 +127,20 @@ export function Footer() {
             © {new Date().getFullYear()} TrackOne Paralegals. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            {['Privacy Policy', 'Terms of Use', 'Disclaimer'].map((item) => (
+            {[
+              { label: 'Privacy Policy', href: '/privacy' },
+              { label: 'Terms of Use', href: '/terms' },
+              { label: 'Disclaimer', href: '#' },
+            ].map((item) => (
               <Link
-                key={item}
-                href="#"
+                key={item.label}
+                href={item.href}
                 className="text-xs text-white/50 transition-colors hover:text-white"
               >
-                {item}
+                {item.label}
               </Link>
             ))}
+             
           </div>
         </div>
       </div>
