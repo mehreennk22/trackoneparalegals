@@ -289,7 +289,7 @@ export default function PricingPage() {
 
         <div className="mx-auto mt-24 flex max-w-2xl flex-col items-center gap-5 rounded-2xl border border-white/10 bg-[#0E1830] px-8 py-12 text-center">
           <h2 className="font-sans text-2xl font-medium tracking-tight text-white">
-            Ad Hoc & Drawings
+            Drawings
           </h2>
           <p className="text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
             Drawing fees depend on the complexity of drawings and time constraints. Rates per sheet typically range from $10 - $35 per sheet. Contact us at{' '}

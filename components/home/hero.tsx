@@ -42,7 +42,7 @@ export function Hero() {
           <motion.span
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: easeOut }}
+            transition={{ duration: 0.4, ease: easeOut }}
             className="inline-flex w-fit items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-3.5 py-1.5 text-xs font-medium text-ink-500 backdrop-blur"
           >
             <span className="flex h-1.5 w-1.5 rounded-full bg-teal-500" />
@@ -54,7 +54,7 @@ export function Hero() {
               <motion.span
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: easeOut, delay: 0.05 }}
+                transition={{ duration: 0.5, ease: easeOut, delay: 0.05 }}
                 className="block"
               >
                 Outsourced IP Administration
@@ -72,7 +72,7 @@ export function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: easeOut, delay: 0.25 }}
+              transition={{ duration: 0.5, ease: easeOut, delay: 0.25 }}
               className="font-sans text-2xl italic leading-tight text-ink-500/80 sm:text-3xl"
             >
               Your IP Admin, Handled. So Your Team Can Focus.
@@ -81,7 +81,7 @@ export function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: easeOut, delay: 0.35 }}
+              transition={{ duration: 0.5, ease: easeOut, delay: 0.35 }}
               className="max-w-xl text-pretty text-[15px] leading-[1.7] tracking-[-0.005em] text-muted-foreground sm:text-lg sm:leading-[1.7]"
             >
               TrackOne Paralegals provides outsourced IP administrative and paralegal support
@@ -93,7 +93,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: easeOut, delay: 0.45 }}
+            transition={{ duration: 0.5, ease: easeOut, delay: 0.45 }}
             className="flex flex-wrap items-center gap-3"
           >
             <CTAButton href="/contact" variant="primary">
@@ -107,7 +107,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.4, delay: 0.6 }}
             className="flex items-center gap-2 pt-2 text-xs text-muted-foreground"
           >
             <ShieldCheck className="h-3.5 w-3.5 text-teal-500" />
@@ -119,7 +119,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, ease: easeOut, delay: 0.3 }}
+          transition={{ duration: 0.6, ease: easeOut, delay: 0.3 }}
           className="relative"
         >
           <HeroDashboard />
