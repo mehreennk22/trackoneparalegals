@@ -52,9 +52,8 @@ export function Footer() {
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-2.5" aria-label="TrackOne Paralegals home">
               <span className="relative flex h-10 w-10 items-center justify-center">
-  <img src="/trackone-icon.png" alt="TrackOne Paralegals" className="h-10 w-10 object-contain" />
-  <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-teal-400 ring-2 ring-[#070D1A]" />
-</span>
+                  <img src="/trackone-icon.png" alt="TrackOne Paralegals" className="h-10 w-10 object-contain" />
+                </span>
               <span className="flex flex-col leading-none">
                 <span className="text-base font-semibold tracking-tight">TrackOne</span>
                 <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/50">

@@ -49,9 +49,8 @@ export function Navbar() {
         >
           <Link href="/" className="group flex items-center gap-2.5" aria-label="TrackOne Paralegals home">
             <span className="relative flex h-9 w-9 items-center justify-center">
-              <img src="/trackone-icon.png" alt="TrackOne Paralegals" className="h-9 w-9 object-contain" />
-              <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-teal-400 ring-2 ring-white/80" />
-            </span>
+                <img src="/trackone-icon.png" alt="TrackOne Paralegals" className="h-9 w-9 object-contain" />
+              </span>
             <span className="flex flex-col leading-none">
               <span className="text-sm font-semibold tracking-tight text-ink-500">TrackOne</span>
               <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
